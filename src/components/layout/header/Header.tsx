@@ -3,12 +3,13 @@ import { Search, User } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import MobileMenu from "./MobileMenu";
+import { ModeToggle } from "@/components/ModeToggle";
 
 const Header = () => {
   return (
-    <div className="bg-myprimarycolor shadow-sm top-0">
+    <div className="headerBg shadow-sm top-0">
       <div className="flex container mx-auto justify-between items-center py-4 px-3">
-        <Link href="/" className="text-white text-2xl font-bold">
+        <Link href="/" className="text-white text-2xl font-bold hover:text-blue-500 dark:hover:text-slate-300">
           Logo
         </Link>
         <nav className="hidden md:flex space-x-6">
@@ -46,6 +47,7 @@ const Header = () => {
             <User />
           </Button>
           </Link>
+          <ModeToggle />
           
          <MobileMenu />
         </div>

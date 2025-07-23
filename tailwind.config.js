@@ -11,14 +11,25 @@ module.exports = {
   ],
   theme: {
   	extend: {
+		fontFamily:{
+			montserrat: ["var(--font-montserrat)", "sans-serif"], 
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
-			myprimarycolor: "#1e293b",
-			mysecondarycolor: "#2c373b",
+			myprimarycolor: "#248afd",
+			mysecondarycolor: "#38454a",
+			mycolordark : {
+				primary : "#248afd",
+				primaryhover:"#1e70d3"
+			},
+			mycolorlight:{
+				primary: "#38454a",
+				primaryHover: "#2c373b",
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
