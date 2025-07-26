@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteMetadata } from "@/lib/siteMetadata";
+import ReduxProvider from "@/components/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +24,7 @@ const montserrat = Geist({
 export const metadata: Metadata = {
   title: {
     template: `%s | ${siteMetadata.title}`,
-    default: siteMetadata.title
+    default: siteMetadata.title,
   },
   description: siteMetadata.description,
   openGraph: {
@@ -52,8 +53,7 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     images: [siteMetadata.socialBanner],
   },
-  metadataBase:new URL("http://localhost:3000"),
-
+  metadataBase: new URL("http://localhost:3000"),
 };
 
 export default function RootLayout({
@@ -63,15 +63,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable}`}
+      >
+        <ReduxProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

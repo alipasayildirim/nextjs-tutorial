@@ -1,26 +1,40 @@
-import React from 'react'
+import React from "react";
 
-const BlogPage = async () => {
-
-    const res = await fetch('http://localhost:3000/api/blog')
-    const posts = await res.json();
-    console.log(posts);
-  return (
-    <div className="container mx-auto px-4 py-8">
-        <h1 className='text-3xl mb-4 '>Blog Post</h1>
-        <h1 className='text-3xl mb-4 font-montserrat'>Blog Post</h1>
-        <ul>
-            {posts.map((post)=>(
-                <li key={post.id} className='mb-6 p-4 border rounded-lg shadow-sm'>
-                    <h2 className='text-xl'> {post.title}</h2>
-                    <p>{post.content}</p>
-                </li>
-            ))}
-        </ul>
-    </div>
-
-    
-  )
+interface Post {
+  id: number;
+  title: string;
+  content: string;
 }
 
-export default BlogPage
+const BlogPage = async () => {
+  const apiBaseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://your-production-domain.com"
+      : "http://localhost:3000";
+
+  let posts: Post[] = [];
+  try {
+    const res = await fetch(`${apiBaseUrl}/api/blog`);
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+    posts = await res.json();
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+
+  return (
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl">SSR Blog Posts</h1>
+
+      <ul className="space-y-4">
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h2 className="text-xl">{post.title}</h2>
+            <p>{post.content}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default BlogPage;

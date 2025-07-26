@@ -1,6 +1,6 @@
-import { NextRequest } from "next/server";
 
-export async function GET(request: NextRequest) {
+
+export async function GET() {
 
     const posts = [
         { id: 1, title: "Next.js 15 New Features", content: "Details about Server Components and Data Fetching." },

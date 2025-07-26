@@ -1,16 +1,21 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Search, User } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import MobileMenu from "./MobileMenu";
 import { ModeToggle } from "@/components/ModeToggle";
+import useStore from "../../../../store/useStore";
 
 const Header = () => {
+
+  const {headerText} = useStore();
+
   return (
     <div className="headerBg shadow-sm top-0">
       <div className="flex container mx-auto justify-between items-center py-4 px-3">
         <Link href="/" className="text-white text-2xl font-bold hover:text-blue-500 dark:hover:text-slate-300">
-          Logo
+          {headerText}
         </Link>
         <nav className="hidden md:flex space-x-6">
           <Link
